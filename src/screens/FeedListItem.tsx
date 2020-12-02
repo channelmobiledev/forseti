@@ -3,12 +3,18 @@ import {View} from 'react-native';
 import {Avatar, Badge, ListItem, Text} from 'react-native-elements';
 import {Card} from 'react-native-elements';
 import {Icon} from 'react-native-elements';
+import COLORS from '../constants/COLORS';
 
 const FeedListItem = () => {
   return (
     <>
-      <Card containerStyle={{padding: 0}}>
-        <ListItem>
+      <Card
+        containerStyle={{
+          padding: 0,
+          backgroundColor: COLORS.card,
+          borderColor: COLORS.card,
+        }}>
+        <ListItem containerStyle={{backgroundColor: COLORS.card}}>
           <Avatar
             rounded
             source={{
@@ -16,7 +22,9 @@ const FeedListItem = () => {
             }}
           />
           <ListItem.Content>
-            <ListItem.Title>D3sk_fanatic69</ListItem.Title>
+            <ListItem.Title style={{color: COLORS.text}}>
+              D3sk_fanatic69
+            </ListItem.Title>
           </ListItem.Content>
         </ListItem>
 
