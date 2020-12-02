@@ -35,6 +35,7 @@ const FeedComponent = () => {
     getData();
   };
 
+  // TODO Check if there's data. If not, show no desktops yet
   return (
     <View style={styles.container}>
       <FlatList
