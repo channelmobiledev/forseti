@@ -2,18 +2,32 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import {SafeAreaView, StyleSheet, StatusBar} from 'react-native';
 
-import {NavigationContainer} from '@react-navigation/native';
+import {DefaultTheme, NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import FeedComponent from './src/components/FeedComponent';
+import COLORS from './src/constants/COLORS';
 
 const Stack = createStackNavigator();
+
+const AppDefaultTheme = {
+  ...DefaultTheme,
+  dark: true,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: COLORS.primaryColor,
+    background: COLORS.background,
+    card: COLORS.card,
+    text: COLORS.text,
+    notification: COLORS.secondaryColor,
+  },
+};
 
 const App = () => {
   return (
     <>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView style={styles.container}>
-        <NavigationContainer>
+        <NavigationContainer theme={AppDefaultTheme}>
           <Stack.Navigator>
             <Stack.Screen name="Feed ✨" component={FeedComponent} />
           </Stack.Navigator>
