@@ -1,10 +1,12 @@
 import React, {useState} from 'react';
 import {FlatList, StyleSheet, Text, View} from 'react-native';
 import FeedListItem from '../screens/FeedListItem';
+import FeedDataRespository from './FeedDataRepository';
 
 const FeedComponent = () => {
   const [dataProvider, setDataProvider] = useState(getDummyData());
   const [isFetching, setIsFetching] = useState(false);
+  const dataRepo = new FeedDataRespository();
 
   const keyExtractor = (item: {}, index: number) => index.toString();
 
@@ -15,18 +17,13 @@ const FeedComponent = () => {
   const getData = () => {
     setIsFetching(true);
 
-    fetch('https://reactnative.dev/movies.json')
+    dataRepo
+      .fetchData()
       .then((response) => response.json())
       .then((json) => {
         setIsFetching(false);
-        //console.log('DEBUG data: ' + JSON.stringify(json));
-
-        console.log('DEBUG data: ' + JSON.stringify(dataProvider));
-        console.log(json);
-
+        // TODO Change for real data
         setDataProvider(json.movies);
-
-        console.log('DEBUG data: ' + JSON.stringify(dataProvider));
       })
       .catch((error) => {
         setIsFetching(false);
