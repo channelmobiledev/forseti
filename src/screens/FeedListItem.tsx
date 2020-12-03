@@ -5,7 +5,11 @@ import {Card} from 'react-native-elements';
 import {Icon} from 'react-native-elements';
 import COLORS from '../constants/COLORS';
 
-const FeedListItem = () => {
+export interface Props {
+  feedData: any;
+}
+
+const FeedListItem = (props: Props) => {
   return (
     <>
       <Card
@@ -18,12 +22,15 @@ const FeedListItem = () => {
           <Avatar
             rounded
             source={{
-              uri: 'https://source.unsplash.com/random/800x600 ',
+              uri: props.feedData.user.avatar,
             }}
           />
           <ListItem.Content>
+            <ListItem.Subtitle style={{color: COLORS.text}}>
+              {props.feedData.post.title}
+            </ListItem.Subtitle>
             <ListItem.Title style={{color: COLORS.text}}>
-              D3sk_fanatic69
+              {props.feedData.user.name}
             </ListItem.Title>
           </ListItem.Content>
         </ListItem>
@@ -31,8 +38,7 @@ const FeedListItem = () => {
         <Card.Image
           style={{height: 250}}
           source={{
-            uri:
-              'https://cdn.shopify.com/s/files/1/0338/5360/3885/products/embody_prd_gallery_nevi_05_2x_0a3fc5a7-d667-4f5f-88a6-1b918ef56017_1280x1280.jpg',
+            uri: props.feedData.post.photo,
           }}
         />
         <View
