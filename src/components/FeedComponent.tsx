@@ -1,17 +1,21 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {FlatList, StyleSheet, Text, View} from 'react-native';
 import FeedListItem from '../screens/FeedListItem';
 import FeedDataRespository from './FeedDataRepository';
 
 const FeedComponent = () => {
-  const [dataProvider, setDataProvider] = useState(getDummyData());
+  const [dataProvider, setDataProvider] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
   const dataRepo = new FeedDataRespository();
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   const keyExtractor = (item: {}, index: number) => index.toString();
 
   const renderItem = ({item}) => {
-    return <FeedListItem />;
+    return <FeedListItem feedData={item} />;
   };
 
   const getData = () => {
@@ -22,8 +26,7 @@ const FeedComponent = () => {
       .then((response) => response.json())
       .then((json) => {
         setIsFetching(false);
-        // TODO Change for real data
-        setDataProvider(json.movies);
+        setDataProvider(json.data);
       })
       .catch((error) => {
         setIsFetching(false);
@@ -47,10 +50,6 @@ const FeedComponent = () => {
       />
     </View>
   );
-};
-
-const getDummyData = () => {
-  return [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}];
 };
 
 const styles = StyleSheet.create({
