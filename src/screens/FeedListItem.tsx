@@ -7,6 +7,7 @@ import COLORS from '../constants/COLORS';
 
 export interface Props {
   feedData: any;
+  onPhotoClick: (id: number) => void;
 }
 
 const FeedListItem = (props: Props) => {
@@ -40,6 +41,7 @@ const FeedListItem = (props: Props) => {
           source={{
             uri: props.feedData.post.photo,
           }}
+          onPress={() => props.onPhotoClick(props.feedData.post.id)}
         />
         <View
           style={{

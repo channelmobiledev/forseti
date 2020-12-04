@@ -15,7 +15,14 @@ const FeedComponent = () => {
   const keyExtractor = (item: {}, index: number) => index.toString();
 
   const renderItem = ({item}) => {
-    return <FeedListItem feedData={item} />;
+    return (
+      <FeedListItem
+        feedData={item}
+        onPhotoClick={(id: number) => {
+          console.log('DEBUG Photo clicked: ' + id);
+        }}
+      />
+    );
   };
 
   const getData = () => {
