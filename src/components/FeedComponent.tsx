@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import {FlatList, StyleSheet, Text, View} from 'react-native';
-import FeedListItem from '../screens/FeedListItem';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 import FeedDataRespository from './FeedDataRepository';
+import FeedScreen from '../screens/FeedScreen';
 
-const FeedComponent = () => {
+const FeedComponent = ({navigation}) => {
   const [dataProvider, setDataProvider] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
   const dataRepo = new FeedDataRespository();
@@ -11,19 +12,6 @@ const FeedComponent = () => {
   useEffect(() => {
     getData();
   }, []);
-
-  const keyExtractor = (item: {}, index: number) => index.toString();
-
-  const renderItem = ({item}) => {
-    return (
-      <FeedListItem
-        feedData={item}
-        onPhotoClick={(id: number) => {
-          console.log('DEBUG Photo clicked: ' + id);
-        }}
-      />
-    );
-  };
 
   const getData = () => {
     setIsFetching(true);
@@ -45,24 +33,24 @@ const FeedComponent = () => {
     getData();
   };
 
-  // TODO Check if there's data. If not, show no desktops yet
+  const navigateToDeskDetailScreen = (id: number) => {
+    navigation.navigate('Desk Detail', {
+      deskDetailId: id,
+    });
+  };
+
   return (
-    <View style={styles.container}>
-      <FlatList
-        keyExtractor={keyExtractor}
-        data={dataProvider}
-        renderItem={renderItem}
+    <>
+      <FeedScreen
         onRefresh={() => onRefresh()}
         refreshing={isFetching}
+        data={dataProvider}
+        onPhotoClick={(id: number) => {
+          navigateToDeskDetailScreen(id);
+        }}
       />
-    </View>
+    </>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
 
 export default FeedComponent;
