@@ -6,6 +6,7 @@ import {DefaultTheme, NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import FeedComponent from './src/components/FeedComponent';
 import COLORS from './src/constants/COLORS';
+import ComponentDeskDetails from './src/components/ComponentDeskDetails';
 
 const Stack = createStackNavigator();
 
@@ -30,6 +31,7 @@ const App = () => {
         <NavigationContainer theme={AppDefaultTheme}>
           <Stack.Navigator>
             <Stack.Screen name="Feed ✨" component={FeedComponent} />
+            <Stack.Screen name="Desk Detail" component={ComponentDeskDetails} />
           </Stack.Navigator>
         </NavigationContainer>
       </SafeAreaView>
