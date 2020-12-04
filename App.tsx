@@ -1,11 +1,11 @@
 import 'react-native-gesture-handler';
 import React from 'react';
 import {SafeAreaView, StyleSheet, StatusBar} from 'react-native';
-
 import {DefaultTheme, NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import FeedComponent from './src/components/FeedComponent';
 import COLORS from './src/constants/COLORS';
+import FeedComponent from './src/components/FeedComponent';
+import DeskDetailsComponent from './src/components/DeskDetailsComponent';
 
 const Stack = createStackNavigator();
 
@@ -30,6 +30,7 @@ const App = () => {
         <NavigationContainer theme={AppDefaultTheme}>
           <Stack.Navigator>
             <Stack.Screen name="Feed ✨" component={FeedComponent} />
+            <Stack.Screen name="Desk Detail" component={DeskDetailsComponent} />
           </Stack.Navigator>
         </NavigationContainer>
       </SafeAreaView>

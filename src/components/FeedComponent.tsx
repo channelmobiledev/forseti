@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import {FlatList, StyleSheet, Text, View} from 'react-native';
-import FeedListItem from '../screens/FeedListItem';
 import FeedDataRespository from './FeedDataRepository';
+import FeedScreen from '../screens/FeedScreen';
+import FeedItemModel from '../models/FeedItemModel';
 
-const FeedComponent = () => {
-  const [dataProvider, setDataProvider] = useState([]);
+const FeedComponent = ({navigation}) => {
+  const [dataProvider, setDataProvider] = useState<FeedItemModel[]>([]);
   const [isFetching, setIsFetching] = useState(false);
   const dataRepo = new FeedDataRespository();
 
@@ -12,21 +12,15 @@ const FeedComponent = () => {
     getData();
   }, []);
 
-  const keyExtractor = (item: {}, index: number) => index.toString();
-
-  const renderItem = ({item}) => {
-    return <FeedListItem feedData={item} />;
-  };
-
   const getData = () => {
     setIsFetching(true);
 
     dataRepo
       .fetchData()
       .then((response) => response.json())
-      .then((json) => {
+      .then((data: FeedItemModel[]) => {
         setIsFetching(false);
-        setDataProvider(json.data);
+        setDataProvider(data);
       })
       .catch((error) => {
         setIsFetching(false);
@@ -38,24 +32,24 @@ const FeedComponent = () => {
     getData();
   };
 
-  // TODO Check if there's data. If not, show no desktops yet
+  const navigateToDeskDetailScreen = (id: number) => {
+    navigation.navigate('Desk Detail', {
+      deskDetailId: id,
+    });
+  };
+
   return (
-    <View style={styles.container}>
-      <FlatList
-        keyExtractor={keyExtractor}
-        data={dataProvider}
-        renderItem={renderItem}
+    <>
+      <FeedScreen
         onRefresh={() => onRefresh()}
         refreshing={isFetching}
+        data={dataProvider}
+        onPhotoClick={(id: number) => {
+          navigateToDeskDetailScreen(id);
+        }}
       />
-    </View>
+    </>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
 
 export default FeedComponent;
