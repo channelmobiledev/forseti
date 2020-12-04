@@ -1,11 +1,12 @@
 import React from 'react';
 import {FlatList, StyleSheet, View} from 'react-native';
+import FeedItemModel from '../models/FeedItemModel';
 import FeedListItem from './FeedListItem';
 
 export interface Props {
   onRefresh: () => void;
   refreshing: boolean;
-  data: any[];
+  data: FeedItemModel[];
   onPhotoClick: (id: number) => void;
 }
 
@@ -14,7 +15,7 @@ const FeedScreen = (props: Props) => {
 
   const keyExtractor = (item: {}, index: number) => index.toString();
 
-  const renderItem = ({item}) => {
+  const renderItem = ({item}: {item: FeedItemModel}) => {
     return (
       <FeedListItem
         feedData={item}

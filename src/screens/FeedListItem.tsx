@@ -4,9 +4,10 @@ import {Avatar, Badge, ListItem, Text} from 'react-native-elements';
 import {Card} from 'react-native-elements';
 import {Icon} from 'react-native-elements';
 import COLORS from '../constants/COLORS';
+import FeedItemModel from '../models/FeedItemModel';
 
 export interface Props {
-  feedData: any;
+  feedData: FeedItemModel;
   onPhotoClick: (id: number) => void;
 }
 

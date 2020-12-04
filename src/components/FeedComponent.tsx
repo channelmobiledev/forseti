@@ -1,11 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
 import FeedDataRespository from './FeedDataRepository';
 import FeedScreen from '../screens/FeedScreen';
+import FeedItemModel from '../models/FeedItemModel';
 
 const FeedComponent = ({navigation}) => {
-  const [dataProvider, setDataProvider] = useState([]);
+  const [dataProvider, setDataProvider] = useState<FeedItemModel[]>([]);
   const [isFetching, setIsFetching] = useState(false);
   const dataRepo = new FeedDataRespository();
 
@@ -19,9 +18,9 @@ const FeedComponent = ({navigation}) => {
     dataRepo
       .fetchData()
       .then((response) => response.json())
-      .then((json) => {
+      .then((data: FeedItemModel[]) => {
         setIsFetching(false);
-        setDataProvider(json.data);
+        setDataProvider(data);
       })
       .catch((error) => {
         setIsFetching(false);
