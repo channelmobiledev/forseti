@@ -9,10 +9,10 @@ const FeedComponent = ({navigation}) => {
   const dataRepo = new FeedDataRespository();
 
   useEffect(() => {
-    getData();
+    getFeedData();
   }, []);
 
-  const getData = () => {
+  const getFeedData = () => {
     setIsFetching(true);
 
     dataRepo
@@ -28,13 +28,45 @@ const FeedComponent = ({navigation}) => {
       });
   };
 
-  const onRefresh = () => {
-    getData();
+  const getDesktopData = (id: number) => {
+    setIsFetching(true);
+
+    const options = {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        id: id,
+      }),
+    };
+
+    fetch('http://192.168.0.13:8000/desktop/', options)
+      .then((response) => response.json())
+      .then((response: any) => {
+        setIsFetching(false);
+
+        if (response.error) {
+          console.log('DEBUG Error: ' + response.error);
+        } else {
+          console.log('DEBUG Data: ' + JSON.stringify(response));
+          navigateToDeskDetailScreen(response);
+        }
+      })
+      .catch((error) => {
+        setIsFetching(false);
+        console.error(error);
+      });
   };
 
-  const navigateToDeskDetailScreen = (id: number) => {
+  const onRefresh = () => {
+    getFeedData();
+  };
+
+  const navigateToDeskDetailScreen = (data: any) => {
     navigation.navigate('Desk Detail', {
-      deskDetailId: id,
+      data,
     });
   };
 
@@ -45,7 +77,7 @@ const FeedComponent = ({navigation}) => {
         refreshing={isFetching}
         data={dataProvider}
         onPhotoClick={(id: number) => {
-          navigateToDeskDetailScreen(id);
+          getDesktopData(id);
         }}
       />
     </>
