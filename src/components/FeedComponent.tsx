@@ -51,7 +51,7 @@ const FeedComponent = ({navigation}) => {
           console.log('DEBUG Error: ' + response.error);
         } else {
           console.log('DEBUG Data: ' + JSON.stringify(response));
-          navigateToDeskDetailScreen(id);
+          navigateToDeskDetailScreen(response);
         }
       })
       .catch((error) => {
@@ -64,9 +64,9 @@ const FeedComponent = ({navigation}) => {
     getFeedData();
   };
 
-  const navigateToDeskDetailScreen = (id: number) => {
+  const navigateToDeskDetailScreen = (data: any) => {
     navigation.navigate('Desk Detail', {
-      deskDetailId: id,
+      data,
     });
   };
 
