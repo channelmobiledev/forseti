@@ -1,5 +1,6 @@
 import React from 'react';
 import {FlatList, StyleSheet, View} from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import FeedItemModel from '../models/FeedItemModel';
 import FeedListItem from './FeedListItem';
 
@@ -26,13 +27,21 @@ const FeedScreen = (props: Props) => {
 
   return (
     <View style={styles.container}>
-      <FlatList
-        keyExtractor={keyExtractor}
-        data={props.data}
-        renderItem={renderItem}
-        onRefresh={() => props.onRefresh()}
-        refreshing={props.refreshing}
-      />
+      <LinearGradient
+        colors={['#ef8182', '#f14c48']}
+        start={{x: 0.2, y: 0.2}}
+        end={{x: 0.8, y: 0.8}}
+        style={{
+          flex: 1,
+        }}>
+        <FlatList
+          keyExtractor={keyExtractor}
+          data={props.data}
+          renderItem={renderItem}
+          onRefresh={() => props.onRefresh()}
+          refreshing={props.refreshing}
+        />
+      </LinearGradient>
     </View>
   );
 };
