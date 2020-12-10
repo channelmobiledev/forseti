@@ -1,7 +1,8 @@
 import React from 'react';
 import {FlatList, Linking, Text, View} from 'react-native';
 import {Avatar, ListItem} from 'react-native-elements';
-import {StandaloneGallery} from 'react-native-gallery-toolkit/lib/typescript/StandaloneGallery';
+import LinearGradient from 'react-native-linear-gradient';
+import COLORS from '../constants/COLORS';
 
 export interface Props {
   data: any;
@@ -12,11 +13,22 @@ const DeskDetailsScreen = (props: Props) => {
 
   const renderItem = ({item}: {item: any}) => {
     return (
-      <ListItem bottomDivider>
+      <ListItem
+        style={{
+          flex: 1,
+          marginTop: 4,
+          marginBottom: 4,
+          marginHorizontal: 10,
+        }}
+        containerStyle={{backgroundColor: COLORS.card}}>
         <Avatar source={{uri: item.icon}} />
         <ListItem.Content>
-          <ListItem.Title>{item.name}</ListItem.Title>
-          <ListItem.Subtitle>{item.type}</ListItem.Subtitle>
+          <ListItem.Title style={{color: COLORS.text}}>
+            {item.name}
+          </ListItem.Title>
+          <ListItem.Subtitle style={{color: COLORS.text}}>
+            {item.type}
+          </ListItem.Subtitle>
         </ListItem.Content>
         <ListItem.Chevron
           onPress={() => {
@@ -27,15 +39,23 @@ const DeskDetailsScreen = (props: Props) => {
     );
   };
 
+  // colors={['#ef8182', '#f14c48']}
+
   return (
     <View style={{flex: 1}}>
-      <View>
+      <LinearGradient
+        colors={['#ef8182', '#f14c48']}
+        start={{x: 0.2, y: 0.2}}
+        end={{x: 0.8, y: 0.8}}
+        style={{
+          flex: 1,
+        }}>
         <FlatList
           keyExtractor={keyExtractor}
           data={props.data.info}
           renderItem={renderItem}
         />
-      </View>
+      </LinearGradient>
     </View>
   );
 };
