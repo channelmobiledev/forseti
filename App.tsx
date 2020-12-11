@@ -9,6 +9,7 @@ import DeskDetailsComponent from './src/components/DeskDetailsComponent';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Avatar, Button, Card, ListItem} from 'react-native-elements';
+import ProfileComponent from './src/components/ProfileComponent';
 
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -62,7 +63,7 @@ const DashboardView = () => {
       />
       <Tab.Screen
         name="Profile"
-        component={TabProfileView}
+        component={ProfileComponent}
         options={{
           tabBarIcon: ({color}) => (
             <MaterialCommunityIcons
@@ -90,41 +91,6 @@ const TabAddDeskView = () => {
   return (
     <View>
       <Text>Hello :D</Text>
-    </View>
-  );
-};
-
-const TabProfileView = () => {
-  return (
-    <View style={{flex: 1, flexDirection: 'column'}}>
-      <ListItem>
-        <Avatar
-          rounded
-          size="xlarge"
-          source={{
-            uri: 'https://source.unsplash.com/random/800x600',
-          }}
-        />
-        <ListItem.Content>
-          <ListItem.Title>Example name</ListItem.Title>
-          <ListItem.Subtitle>20k subs</ListItem.Subtitle>
-          <Button
-            titleStyle={{
-              color: '#f14c48',
-            }}
-            buttonStyle={{borderColor: '#f14c48'}}
-            icon={
-              <MaterialCommunityIcons
-                name="crown-outline"
-                size={26}
-                color="#f14c48"
-              />
-            }
-            title="Follow"
-            type="outline"
-          />
-        </ListItem.Content>
-      </ListItem>
     </View>
   );
 };
