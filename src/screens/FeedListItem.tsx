@@ -17,6 +17,7 @@ const FeedListItem = (props: Props) => {
    */
   // - Implement the FAV button feature
   // - Implement the FAV button state change
+  // - Change all icons to either Font Awesome or Community SomethingSomething
 
   const onClickFav = () => {
     console.log('DEBUG To implement 1');
