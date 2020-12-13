@@ -81,7 +81,11 @@ const DashboardView = () => {
 const TabFeedView = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Feed ✨" component={FeedComponent} />
+      <Stack.Screen
+        name="Feed"
+        component={FeedComponent}
+        options={{headerShown: false}}
+      />
       <Stack.Screen name="Desk Detail" component={DeskDetailsComponent} />
     </Stack.Navigator>
   );
