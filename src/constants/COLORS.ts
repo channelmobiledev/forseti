@@ -4,6 +4,7 @@ export default class COLORS {
   static secondaryColor = '#2cf4da';
 
   // UI
+  static inactive = '#a0a0a0';
   static background = '#404040';
   static card = '#303030';
   static text = '#f9f9f9';
