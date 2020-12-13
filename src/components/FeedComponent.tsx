@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import FeedDataRespository from './FeedDataRepository';
+import FeedDataRespository from '../repositories/FeedDataRepository';
 import FeedScreen from '../screens/FeedScreen';
 import FeedItemModel from '../models/FeedItemModel';
 
