@@ -1,5 +1,5 @@
 export default class COLORS {
-  static primaryColor = '#ffffff';
+  static primaryColor = '#ff073a';
   static secondaryColor = '#29abe2';
 
   static background = '#404040';

@@ -42,7 +42,7 @@ const App = () => {
 
 const DashboardView = () => {
   return (
-    <Tab.Navigator labeled={true} activeColor="#ff073a">
+    <Tab.Navigator labeled={true} activeColor={COLORS.primaryColor}>
       <Tab.Screen
         name="Feed"
         component={TabFeedView}
