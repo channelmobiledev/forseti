@@ -44,7 +44,7 @@ const DeskDetailsScreen = (props: Props) => {
   return (
     <View style={{flex: 1}}>
       <LinearGradient
-        colors={['#ff06b5', '#ff073a']}
+        colors={[COLORS.grd1, COLORS.grd2]}
         start={{x: 0.2, y: 0.2}}
         end={{x: 0.8, y: 0.8}}
         style={{
