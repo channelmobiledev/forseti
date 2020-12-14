@@ -1,15 +1,15 @@
 import 'react-native-gesture-handler';
 import React from 'react';
-import {SafeAreaView, StyleSheet, StatusBar, Text, View} from 'react-native';
+import {SafeAreaView, StyleSheet, StatusBar} from 'react-native';
 import {DefaultTheme, NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import COLORS from './src/constants/COLORS';
-import FeedComponent from './src/components/FeedComponent';
-import DeskDetailsComponent from './src/components/DeskDetailsComponent';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {Avatar, Button, Card, ListItem} from 'react-native-elements';
+import FeedComponent from './src/components/FeedComponent';
+import DeskDetailsComponent from './src/components/DeskDetailsComponent';
 import ProfileComponent from './src/components/ProfileComponent';
+import AddDeskComponent from './src/components/AddDeskComponent';
 
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -42,7 +42,7 @@ const App = () => {
 
 const DashboardView = () => {
   return (
-    <Tab.Navigator labeled={true} activeColor="#ff073a">
+    <Tab.Navigator labeled={true} activeColor={COLORS.secondaryColor}>
       <Tab.Screen
         name="Feed"
         component={TabFeedView}
@@ -81,18 +81,18 @@ const DashboardView = () => {
 const TabFeedView = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Feed ✨" component={FeedComponent} />
+      <Stack.Screen
+        name="Feed"
+        component={FeedComponent}
+        options={{headerShown: false}}
+      />
       <Stack.Screen name="Desk Detail" component={DeskDetailsComponent} />
     </Stack.Navigator>
   );
 };
 
 const TabAddDeskView = () => {
-  return (
-    <View>
-      <Text>Hello :D</Text>
-    </View>
-  );
+  return <AddDeskComponent />;
 };
 
 const styles = StyleSheet.create({
