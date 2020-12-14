@@ -1,9 +1,8 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import {Avatar, ListItem} from 'react-native-elements';
-import {Card} from 'react-native-elements';
-import SocialIconComponent from '../components/SocialIconComponent';
+import {Avatar, ListItem, Card} from 'react-native-elements';
 import COLORS from '../constants/COLORS';
+import SocialIconComponent from '../components/SocialIconComponent';
 import FeedItemModel from '../models/FeedItemModel';
 
 export interface Props {
@@ -17,6 +16,7 @@ const FeedListItem = (props: Props) => {
    */
   // - Implement the FAV button feature
   // - Implement the FAV button state change
+  // - Change all icons to either Font Awesome or Community SomethingSomething
   // - Change all icons to either Font Awesome or Community SomethingSomething
 
   const onClickFav = () => {
