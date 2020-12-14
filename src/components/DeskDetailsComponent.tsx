@@ -2,11 +2,11 @@ import React from 'react';
 import DeskDetailsScreen from '../screens/DeskDetailsScreen';
 
 const DeskDetailsComponent = ({route}) => {
-  const {deskDetailId} = route.params;
+  const {data} = route.params;
 
   return (
     <>
-      <DeskDetailsScreen textToShop={deskDetailId} />
+      <DeskDetailsScreen data={data} />
     </>
   );
 };
