@@ -1,12 +1,12 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import {Avatar, ListItem, Card} from 'react-native-elements';
+import {Avatar, ListItem, Card, Text} from 'react-native-elements';
 import COLORS from '../constants/COLORS';
 import SocialIconComponent from '../components/SocialIconComponent';
 import FeedItemModel from '../models/FeedItemModel';
 
 export interface Props {
-  feedData: FeedItemModel;
+  data: FeedItemModel;
   onPhotoClick: (id: number) => void;
 }
 
@@ -29,15 +29,15 @@ const FeedListItem = (props: Props) => {
         <Avatar
           rounded
           source={{
-            uri: props.feedData.user.avatar,
+            uri: props.data.user.avatar,
           }}
         />
         <ListItem.Content>
           <ListItem.Subtitle style={{color: COLORS.text}}>
-            {props.feedData.post.title}
+            {props.data.post.title}
           </ListItem.Subtitle>
           <ListItem.Title style={{color: COLORS.text}}>
-            {props.feedData.user.name}
+            {props.data.user.name}
           </ListItem.Title>
         </ListItem.Content>
       </ListItem>
@@ -45,9 +45,9 @@ const FeedListItem = (props: Props) => {
       <Card.Image
         style={styles.picture}
         source={{
-          uri: props.feedData.post.photo,
+          uri: props.data.post.photo,
         }}
-        onPress={() => props.onPhotoClick(props.feedData.post.id)}
+        onPress={() => props.onPhotoClick(props.data.post.id)}
       />
 
       <View style={styles.socialContainer}>

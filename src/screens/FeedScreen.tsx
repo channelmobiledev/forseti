@@ -25,7 +25,7 @@ const FeedScreen = (props: Props) => {
   const renderItem = ({item}: {item: FeedItemModel}) => {
     return (
       <FeedListItem
-        feedData={item}
+        data={item}
         onPhotoClick={(id: number) => props.onPhotoClick(id)}
       />
     );
