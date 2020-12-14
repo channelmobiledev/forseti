@@ -1,8 +1,15 @@
 export default class COLORS {
-  static primaryColor = '#ffffff';
-  static secondaryColor = '#29abe2';
+  // Global
+  static primaryColor = '#ff073a';
+  static secondaryColor = '#2cf4da';
 
+  // UI
+  static inactive = '#a0a0a0';
   static background = '#404040';
   static card = '#303030';
   static text = '#f9f9f9';
+
+  // Gradient
+  static grd1 = '#ff073a';
+  static grd2 = '#ff06b5';
 }

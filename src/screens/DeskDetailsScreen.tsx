@@ -1,5 +1,5 @@
 import React from 'react';
-import {FlatList, Linking, Text, View} from 'react-native';
+import {FlatList, Linking, StyleSheet, Text, View} from 'react-native';
 import {Avatar, ListItem} from 'react-native-elements';
 import LinearGradient from 'react-native-linear-gradient';
 import COLORS from '../constants/COLORS';
@@ -14,12 +14,7 @@ const DeskDetailsScreen = (props: Props) => {
   const renderItem = ({item}: {item: any}) => {
     return (
       <ListItem
-        style={{
-          flex: 1,
-          marginTop: 4,
-          marginBottom: 4,
-          marginHorizontal: 10,
-        }}
+        style={styles.container}
         containerStyle={{backgroundColor: COLORS.card}}>
         <Avatar source={{uri: item.icon}} />
         <ListItem.Content>
@@ -39,25 +34,32 @@ const DeskDetailsScreen = (props: Props) => {
     );
   };
 
-  // colors={['#ef8182', '#f14c48']}
-
   return (
-    <View style={{flex: 1}}>
-      <LinearGradient
-        colors={['#ff06b5', '#ff073a']}
-        start={{x: 0.2, y: 0.2}}
-        end={{x: 0.8, y: 0.8}}
-        style={{
-          flex: 1,
-        }}>
-        <FlatList
-          keyExtractor={keyExtractor}
-          data={props.data.info}
-          renderItem={renderItem}
-        />
-      </LinearGradient>
-    </View>
+    <LinearGradient
+      colors={[COLORS.grd1, COLORS.grd2]}
+      start={{x: 0.2, y: 0.2}}
+      end={{x: 0.8, y: 0.8}}
+      style={styles.gradient}>
+      <FlatList
+        keyExtractor={keyExtractor}
+        data={props.data.info}
+        renderItem={renderItem}
+      />
+    </LinearGradient>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 0,
+    margin: 15,
+    marginBottom: 4,
+    marginHorizontal: 10,
+  },
+  gradient: {
+    flex: 1,
+  },
+});
 
 export default DeskDetailsScreen;

@@ -18,9 +18,9 @@ const ProfileScreen = () => {
       <View style={{flex: 1}}>
         <Tab.Navigator
           tabBarOptions={{
-            activeTintColor: '#ff073a',
+            activeTintColor: COLORS.secondaryColor,
             indicatorStyle: {
-              backgroundColor: '#ff073a',
+              backgroundColor: COLORS.secondaryColor,
             },
           }}>
           <Tab.Screen name="Following" component={DummyView} />
@@ -53,14 +53,14 @@ const ProfileView = () => {
         <Button
           containerStyle={{marginTop: 10}}
           titleStyle={{
-            color: '#ff073a',
+            color: COLORS.secondaryColor,
           }}
-          buttonStyle={{borderColor: '#ff073a'}}
+          buttonStyle={{borderColor: COLORS.secondaryColor}}
           icon={
             <MaterialCommunityIcons
               name="crown-outline"
               size={26}
-              color="#ff073a"
+              color={COLORS.secondaryColor}
             />
           }
           title="Follow"
