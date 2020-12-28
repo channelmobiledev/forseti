@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import FeedDataRespository from '../repositories/FeedDataRepository';
 import FeedScreen from '../screens/FeedScreen';
 import FeedItemModel from '../models/FeedItemModel';
+import {SERVER_ADDRESS} from '../constants/CONFIG';
 
 const FeedComponent = ({navigation}) => {
   const [dataProvider, setDataProvider] = useState<FeedItemModel[]>([]);
@@ -31,6 +32,7 @@ const FeedComponent = ({navigation}) => {
   const getDesktopData = (id: number) => {
     setIsFetching(true);
 
+    const address = SERVER_ADDRESS + 'desktop/';
     const options = {
       method: 'POST',
       headers: {
@@ -42,7 +44,7 @@ const FeedComponent = ({navigation}) => {
       }),
     };
 
-    fetch('http://192.168.0.13:8000/desktop/', options)
+    fetch(address, options)
       .then((response) => response.json())
       .then((response: any) => {
         setIsFetching(false);
