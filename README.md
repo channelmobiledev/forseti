@@ -1,59 +1,42 @@
 # Forseti
 
-OnlyFans, but for pictures of desk setups
+`OnlyFans, but for pictures of desk setups`.
 
-> Forseti, God of Mediation
+Mobile App built in React Native compatible with Android and iOS.
 
-# Roadmap
+![Screenshot of the App running](https://drive.google.com/uc?id=1M8R_N1QzQeugfANHh6dRBuLVP2lCz2Un)
 
-## Desk Setups
+## 🛠️ Install
 
-```typescript
-interface DeskSetups {
-  gallery: string[];
-  components: component[];
-}
+Software requirements
+
+- [Node](https://nodejs.org/en/download/)
+- [React Native](https://reactnative.dev/)
+
+Install project dependency packages
+
+```bash
+npm install
 ```
 
-## Component
+## 🏃‍♀️ Run
 
-```typescript
-interface Component {
-  picture: string;
-  name: string;
-  type: ComponentType;
-  link: string;
-  addToWishlist: () => {serivce.addToWishlist(componentId)};
-}
+Metro Server. Required to run the App
+
+```bash
+npm start
 ```
 
-### ComponentType
+Run on a device
 
-// This one needs to be provided by the system
+_Android_
 
-```typescript
-interface ComponentType {
-  name: string;
-  icon: string;
-}
+```bash
+npm run android
 ```
 
-## Profile
+_iOS_
 
-```typescript
-interface User {
-  picture: string;
-  name: string;
-  email: string;
-}
-```
-
-```typescript
-interface ComponentType {
-  user: User;
-  following: User[];
-  followers: User[];
-  favourites: DeskSetups[];
-  wishlist: Component[];
-}
+```bash
+npm run ios
 ```
