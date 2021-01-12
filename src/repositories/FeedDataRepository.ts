@@ -1,9 +1,12 @@
+import {SERVER_ADDRESS} from '../constants/CONFIG';
+
 class FeedDataRespository {
   fetchData = () => {
+    const address = SERVER_ADDRESS + 'feed/';
     const options = {
       method: 'GET',
     };
-    return fetch('http://192.168.0.13:8000/feed/', options);
+    return fetch(address, options);
   };
 }
 
