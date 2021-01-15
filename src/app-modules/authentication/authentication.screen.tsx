@@ -48,13 +48,8 @@ const AuthenticationScreen = (props: Props) => {
    */
   const showLoginView = () => {
     return (
-      <View
-        style={{
-          flex: 1,
-          flexDirection: 'column',
-          justifyContent: 'center',
-        }}>
-        <View style={{paddingBottom: 10, paddingHorizontal: 10}}>
+      <View style={styles.loginView}>
+        <View style={styles.loginViewComponents}>
           <TextInput
             label="Username"
             value={username}
@@ -62,7 +57,7 @@ const AuthenticationScreen = (props: Props) => {
             onChangeText={(text) => setUsername(text)}
           />
         </View>
-        <View style={{paddingBottom: 10, paddingHorizontal: 10}}>
+        <View style={styles.loginViewComponents}>
           <TextInput
             label="password"
             value={password}
@@ -70,7 +65,7 @@ const AuthenticationScreen = (props: Props) => {
             onChangeText={(text) => setPassword(text)}
           />
         </View>
-        <View style={{paddingBottom: 10, paddingHorizontal: 10}}>
+        <View style={styles.loginViewComponents}>
           <Button
             icon="account"
             mode="contained"
@@ -79,7 +74,7 @@ const AuthenticationScreen = (props: Props) => {
             Login
           </Button>
         </View>
-        <View style={{paddingBottom: 10, paddingHorizontal: 10}}>
+        <View style={styles.loginViewComponents}>
           <Button
             icon="account"
             mode="contained"
@@ -88,7 +83,7 @@ const AuthenticationScreen = (props: Props) => {
             Register
           </Button>
         </View>
-        <View style={{paddingHorizontal: 10}}>
+        <View style={styles.loginViewComponents}>
           <Button
             icon="account-question"
             mode="outlined"
@@ -147,6 +142,12 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 10,
   },
+  loginView: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+  },
+  loginViewComponents: {paddingBottom: 10, paddingHorizontal: 10},
 });
 
 export default AuthenticationScreen;
