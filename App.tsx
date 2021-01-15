@@ -24,6 +24,9 @@ const AppDefaultTheme = {
     card: COLORS.card,
     text: COLORS.text,
     notification: COLORS.secondaryColor,
+    backgroundColor: '#ff0000',
+    placeholder: '#ff0000',
+    underlineColor: '#ff0000',
   },
 };
 
