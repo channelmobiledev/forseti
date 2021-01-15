@@ -6,6 +6,10 @@ import {Button, TextInput} from 'react-native-paper';
 import COLORS from '../../constants/COLORS';
 import {AuthStep} from '../../models/AuthStepModel';
 
+// TODO Needs to move to a theme provicer
+/**
+ * Theme settings
+ */
 const AppDefaultTheme = {
   ...DefaultTheme,
   dark: true,
@@ -19,13 +23,12 @@ const AppDefaultTheme = {
   },
 };
 
+/**
+ * Props
+ */
 interface Props {
   authStep: AuthStep;
-  username: string;
-  password: string;
-  setUsername: (username: string) => void;
-  setPassword: (password: string) => void;
-  onLoginClick: () => void;
+  onLoginClick: (username: string, password: string) => void;
   onRegisterClick: () => void;
   onForgotPasswordClick: () => void;
 }
@@ -34,6 +37,12 @@ interface Props {
  * Handles Authentication Views
  */
 const AuthenticationScreen = (props: Props) => {
+  /**
+   * React hooks state
+   */
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
   /**
    * Show the login view
    */
@@ -48,17 +57,17 @@ const AuthenticationScreen = (props: Props) => {
         <View style={{paddingBottom: 10, paddingHorizontal: 10}}>
           <TextInput
             label="Username"
-            value={props.username}
+            value={username}
             theme={AppDefaultTheme}
-            onChangeText={(text) => props.setUsername(text)}
+            onChangeText={(text) => setUsername(text)}
           />
         </View>
         <View style={{paddingBottom: 10, paddingHorizontal: 10}}>
           <TextInput
             label="password"
-            value={props.password}
+            value={password}
             theme={AppDefaultTheme}
-            onChangeText={(text) => props.setPassword(text)}
+            onChangeText={(text) => setPassword(text)}
           />
         </View>
         <View style={{paddingBottom: 10, paddingHorizontal: 10}}>
@@ -66,7 +75,7 @@ const AuthenticationScreen = (props: Props) => {
             icon="account"
             mode="contained"
             color={COLORS.secondaryColor}
-            onPress={() => props.onLoginClick()}>
+            onPress={() => props.onLoginClick(username, password)}>
             Login
           </Button>
         </View>

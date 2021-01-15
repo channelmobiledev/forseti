@@ -11,18 +11,19 @@ const AuthenticationComponent = () => {
    * React hooks state
    */
   const [authStep, setStep] = useState<AuthStep>(AuthStep.login);
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
 
+  /**
+   * Services
+   */
   const authService: AuthService = new AuthService();
 
   /**
    * Handle login click
    */
-  const onLoginClick = () => {
+  const onLoginClick = (username: string, password: string) => {
     // TODO Check if login is valid
     if (true) {
-      userLogin();
+      userLogin(username, password);
     } else {
     }
   };
@@ -41,7 +42,7 @@ const AuthenticationComponent = () => {
     console.log('DEBUG onForgotPasswordClick');
   };
 
-  const userLogin = () => {
+  const userLogin = (username: string, password: string) => {
     authService.login(username, password);
   };
 
@@ -51,11 +52,9 @@ const AuthenticationComponent = () => {
   return (
     <AuthenticationScreen
       authStep={authStep}
-      username={username}
-      password={password}
-      setUsername={(username: string) => setUsername(username)}
-      setPassword={(password: string) => setPassword(password)}
-      onLoginClick={() => onLoginClick()}
+      onLoginClick={(username: string, password: string) =>
+        onLoginClick(username, password)
+      }
       onRegisterClick={() => onRegisterClick()}
       onForgotPasswordClick={() => onForgotPasswordClick()}
     />
