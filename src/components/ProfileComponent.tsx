@@ -1,14 +1,28 @@
+import {useFocusEffect} from '@react-navigation/native';
 import React from 'react';
 import AuthenticationComponent from '../app-modules/authentication/authentication.component';
 import ProfileScreen from '../screens/ProfileScreen';
+import {AuthService} from '../services/auth.service';
 
 const ProfileComponent = () => {
+  /**
+   * Services
+   */
+  const authService: AuthService = new AuthService();
+
+  /**
+   * On Start
+   */
+  useFocusEffect(() => {
+    isUserAuthenticated();
+  });
+
   /**
    * Check if user data is in the App
    */
   const isUserAuthenticated = () => {
-    // TODO Implement check
-    return false;
+    const user = authService.getUserData();
+    return user != null;
   };
 
   /**
@@ -22,7 +36,7 @@ const ProfileComponent = () => {
    * Show the authentication screen
    */
   const showAuthentication = () => {
-    return <AuthenticationComponent />;
+    return <AuthenticationComponent authService={authService} />;
   };
 
   /**

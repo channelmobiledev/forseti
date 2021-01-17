@@ -1,21 +1,20 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {AuthStep} from '../../models/AuthStepModel';
 import {AuthService} from '../../services/auth.service';
 import AuthenticationScreen from './authentication.screen';
 
+interface Props {
+  authService: AuthService;
+}
+
 /**
  * Handles Authentication Logic
  */
-const AuthenticationComponent = () => {
+const AuthenticationComponent = (props: Props) => {
   /**
    * React hooks state
    */
   const [authStep, setStep] = useState<AuthStep>(AuthStep.login);
-
-  /**
-   * Services
-   */
-  const authService: AuthService = new AuthService();
 
   /**
    * Handle login click
@@ -43,7 +42,7 @@ const AuthenticationComponent = () => {
   };
 
   const userLogin = (username: string, password: string) => {
-    authService.login(username, password);
+    props.authService.login(username, password);
   };
 
   /**
