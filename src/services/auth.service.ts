@@ -67,8 +67,11 @@ export class AuthService {
   getUserData = async () => {
     try {
       const user = await AsyncStorage.getItem(this.KEY_USER);
-      console.log('DEBUG User data successfully retrieved!');
-      return user;
+      if (user) {
+        return JSON.parse(user);
+      } else {
+        console.log('DEBUG could not retrive user');
+      }
     } catch (error) {
       console.log('DEBUG Error while saving user data: ' + error);
     }
