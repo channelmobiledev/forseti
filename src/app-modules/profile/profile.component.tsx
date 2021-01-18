@@ -4,10 +4,8 @@ import UserModel from '../../models/UserModel';
 import ProfileScreen from './profile.screen';
 import {AuthService} from '../../services/auth.service';
 import {ProfileCheckModel} from '../../models/ProfileCheckModel';
-import {Text} from 'react-native-elements';
-import {StyleSheet, View} from 'react-native';
-import COLORS from '../../constants/COLORS';
 import GradientView from '../utilityViews/gradient.screen';
+import Loading from '../utilityViews/loading.screen';
 
 const ProfileComponent = () => {
   /**
@@ -51,7 +49,11 @@ const ProfileComponent = () => {
   };
 
   const showLoading = () => {
-    return <GradientView></GradientView>;
+    return (
+      <GradientView>
+        <Loading />
+      </GradientView>
+    );
   };
 
   /**
