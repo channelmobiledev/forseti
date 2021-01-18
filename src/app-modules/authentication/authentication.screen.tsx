@@ -131,6 +131,7 @@ const AuthenticationScreen = (props: Props) => {
         return showForgotPasswordView();
     }
   };
+
   /**
    * Render
    */
