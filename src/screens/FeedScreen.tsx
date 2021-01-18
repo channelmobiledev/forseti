@@ -7,7 +7,7 @@ import {
   View,
 } from 'react-native';
 import {Text} from 'react-native-elements';
-import LinearGradient from 'react-native-linear-gradient';
+import GradientView from '../app-modules/utilityViews/gradient.screen';
 import COLORS from '../constants/COLORS';
 import FeedItemModel from '../models/FeedItemModel';
 import FeedListItem from './FeedListItem';
@@ -65,13 +65,9 @@ const FeedScreen = (props: Props) => {
   };
 
   return (
-    <LinearGradient
-      colors={[COLORS.grd1, COLORS.grd2]}
-      start={{x: 0.2, y: 0.2}}
-      end={{x: 0.8, y: 0.8}}
-      style={styles.gradient}>
+    <GradientView>
       {props.data.length > 0 ? renderHasData() : renderEmptyData()}
-    </LinearGradient>
+    </GradientView>
   );
 };
 

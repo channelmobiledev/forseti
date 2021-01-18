@@ -3,12 +3,20 @@ import AuthenticationComponent from '../../app-modules/authentication/authentica
 import UserModel from '../../models/UserModel';
 import ProfileScreen from './profile.screen';
 import {AuthService} from '../../services/auth.service';
+import {ProfileCheckModel} from '../../models/ProfileCheckModel';
+import {Text} from 'react-native-elements';
+import {StyleSheet, View} from 'react-native';
+import COLORS from '../../constants/COLORS';
+import GradientView from '../utilityViews/gradient.screen';
 
 const ProfileComponent = () => {
   /**
    * State hooks
    */
   const [userData, setUserData] = useState<UserModel>();
+  const [profileState, setProfileState] = useState<ProfileCheckModel>(
+    ProfileCheckModel.checkProfile,
+  );
 
   // On Component Start
   useEffect(() => {
@@ -27,6 +35,12 @@ const ProfileComponent = () => {
   const getUserData = async () => {
     const user = await authService.getUserData();
     setUserData(user);
+
+    if (user) {
+      setProfileState(ProfileCheckModel.showProfile);
+    } else {
+      setProfileState(ProfileCheckModel.showAuth);
+    }
   };
 
   /**
@@ -34,6 +48,10 @@ const ProfileComponent = () => {
    */
   const isUserAuthenticated = () => {
     return userData != null;
+  };
+
+  const showLoading = () => {
+    return <GradientView></GradientView>;
   };
 
   /**
@@ -51,9 +69,23 @@ const ProfileComponent = () => {
   };
 
   /**
+   * Renders the correct step of the Profile
+   */
+  const renderSelectedStepView = () => {
+    switch (profileState) {
+      case ProfileCheckModel.checkProfile:
+        return showLoading();
+      case ProfileCheckModel.showAuth:
+        return showAuthentication();
+      case ProfileCheckModel.showProfile:
+        return showProfile();
+    }
+  };
+
+  /**
    * Render
    */
-  return <>{isUserAuthenticated() ? showProfile() : showAuthentication()}</>;
+  return <>{renderSelectedStepView()}</>;
 };
 
 export default ProfileComponent;
