@@ -36,19 +36,19 @@ const App = () => {
       <StatusBar barStyle="dark-content" />
       <SafeAreaView style={styles.container}>
         <NavigationContainer theme={AppDefaultTheme}>
-          <DashboardView />
+          <MainNavigationTabViews />
         </NavigationContainer>
       </SafeAreaView>
     </>
   );
 };
 
-const DashboardView = () => {
+const MainNavigationTabViews = () => {
   return (
     <Tab.Navigator labeled={true} activeColor={COLORS.secondaryColor}>
       <Tab.Screen
         name="Feed"
-        component={TabFeedView}
+        component={TabFeedComponent}
         options={{
           tabBarIcon: ({color}) => (
             <MaterialCommunityIcons name="billboard" color={color} size={26} />
@@ -57,7 +57,7 @@ const DashboardView = () => {
       />
       <Tab.Screen
         name="Add Desk"
-        component={TabAddDeskView}
+        component={TabAddDeskComponent}
         options={{
           tabBarIcon: ({color}) => (
             <MaterialCommunityIcons name="image-plus" color={color} size={26} />
@@ -66,7 +66,7 @@ const DashboardView = () => {
       />
       <Tab.Screen
         name="Profile"
-        component={ProfileComponent}
+        component={TabProfileComponent}
         options={{
           tabBarIcon: ({color}) => (
             <MaterialCommunityIcons
@@ -81,7 +81,7 @@ const DashboardView = () => {
   );
 };
 
-const TabFeedView = () => {
+const TabFeedComponent = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -94,8 +94,12 @@ const TabFeedView = () => {
   );
 };
 
-const TabAddDeskView = () => {
+const TabAddDeskComponent = () => {
   return <AddDeskComponent />;
+};
+
+const TabProfileComponent = () => {
+  return <ProfileComponent />;
 };
 
 const styles = StyleSheet.create({
