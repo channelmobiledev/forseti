@@ -1,19 +1,36 @@
-import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import React from 'react';
 import {ScrollView, Text, View} from 'react-native';
+import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import {Avatar, Button, ListItem} from 'react-native-elements';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import COLORS from '../constants/COLORS';
+import COLORS from '../../constants/COLORS';
+import UserModel from '../../models/UserModel';
 
-const Tab = createMaterialTopTabNavigator();
+/**
+ * Props
+ */
+interface Props {
+  userData: UserModel;
+}
 
-const ProfileScreen = () => {
+/**
+ * Handles the profile screen views
+ */
+const ProfileScreen = (props: Props) => {
+  /**
+   * Handles the Material top bar
+   */
+  const Tab = createMaterialTopTabNavigator();
+
+  /**
+   * Render
+   */
   return (
     <ScrollView
       contentContainerStyle={{flexGrow: 1}}
       style={{flexDirection: 'column', backgroundColor: '#ff0000'}}>
       <View style={{flex: 0}}>
-        <ProfileView />
+        <ProfileView userData={props.userData} />
       </View>
       <View style={{flex: 1}}>
         <Tab.Navigator
@@ -33,7 +50,10 @@ const ProfileScreen = () => {
   );
 };
 
-const ProfileView = () => {
+const ProfileView = (props: Props) => {
+  /**
+   * Render
+   */
   return (
     <ListItem containerStyle={{backgroundColor: COLORS.background}}>
       <Avatar
@@ -45,7 +65,7 @@ const ProfileView = () => {
       />
       <ListItem.Content>
         <ListItem.Title style={{color: COLORS.text}}>
-          Example name
+          {props.userData.username}
         </ListItem.Title>
         <ListItem.Subtitle style={{color: COLORS.text}}>
           20k subs

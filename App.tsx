@@ -8,7 +8,7 @@ import {createMaterialBottomTabNavigator} from '@react-navigation/material-botto
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import FeedComponent from './src/components/FeedComponent';
 import DeskDetailsComponent from './src/components/DeskDetailsComponent';
-import ProfileComponent from './src/components/ProfileComponent';
+import ProfileComponent from './src/app-modules/profile/profile.component';
 import AddDeskComponent from './src/components/AddDeskComponent';
 
 const Tab = createMaterialBottomTabNavigator();
