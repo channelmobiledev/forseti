@@ -1,12 +1,18 @@
 import React from 'react';
-import {View} from 'react-native';
 import {Text} from 'react-native-elements';
+import GradientView from '../app-modules/utilityViews/gradient.screen';
 
+/**
+ * Handles adding new desk setups
+ */
 const AddDeskComponent = () => {
+  /**
+   * Render
+   */
   return (
-    <View>
+    <GradientView>
       <Text>Hello :D</Text>
-    </View>
+    </GradientView>
   );
 };
 
