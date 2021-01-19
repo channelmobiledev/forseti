@@ -60,7 +60,7 @@ const ProfileView = (props: Props) => {
         rounded
         size="xlarge"
         source={{
-          uri: 'https://source.unsplash.com/random/800x600',
+          uri: props.userData.avatar,
         }}
       />
       <ListItem.Content>
