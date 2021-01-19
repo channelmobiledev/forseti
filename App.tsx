@@ -10,6 +10,7 @@ import FeedComponent from './src/components/FeedComponent';
 import DeskDetailsComponent from './src/components/DeskDetailsComponent';
 import ProfileComponent from './src/app-modules/profile/profile.component';
 import AddDeskComponent from './src/components/AddDeskComponent';
+import SettingsComponent from './src/app-modules/settings/settings.component';
 
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -77,6 +78,19 @@ const MainNavigationTabViews = () => {
           ),
         }}
       />
+      <Tab.Screen
+        name="Settings"
+        component={TabSettingsComponent}
+        options={{
+          tabBarIcon: ({color}) => (
+            <MaterialCommunityIcons
+              name="human-greeting"
+              color={color}
+              size={26}
+            />
+          ),
+        }}
+      />
     </Tab.Navigator>
   );
 };
@@ -100,6 +114,10 @@ const TabAddDeskComponent = () => {
 
 const TabProfileComponent = () => {
   return <ProfileComponent />;
+};
+
+const TabSettingsComponent = () => {
+  return <SettingsComponent />;
 };
 
 const styles = StyleSheet.create({
