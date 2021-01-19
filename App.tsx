@@ -84,7 +84,7 @@ const MainNavigationTabViews = () => {
         options={{
           tabBarIcon: ({color}) => (
             <MaterialCommunityIcons
-              name="human-greeting"
+              name="cog-outline"
               color={color}
               size={26}
             />
