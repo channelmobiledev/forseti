@@ -1,7 +1,7 @@
 import React from 'react';
 import DeskDetailsScreen from '../screens/DeskDetailsScreen';
 
-const DeskDetailsComponent = ({route}) => {
+const DeskDetailsComponent = ({route}: any) => {
   const {data} = route.params;
 
   return (
