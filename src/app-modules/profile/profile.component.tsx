@@ -68,7 +68,6 @@ const ProfileComponent = () => {
         authService={authService}
         onLoginSuccess={() => {
           getUserData();
-          //setProfileState(ProfileCheckModel.showProfile);
         }}
       />
     );
