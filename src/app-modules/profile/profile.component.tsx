@@ -42,12 +42,8 @@ const ProfileComponent = () => {
   };
 
   /**
-   * Check if user data is in the App
+   * Show loading activity indicator
    */
-  const isUserAuthenticated = () => {
-    return userData != null;
-  };
-
   const showLoading = () => {
     return (
       <GradientView>
@@ -67,7 +63,15 @@ const ProfileComponent = () => {
    * Show the authentication screen
    */
   const showAuthentication = () => {
-    return <AuthenticationComponent authService={authService} />;
+    return (
+      <AuthenticationComponent
+        authService={authService}
+        onLoginSuccess={() => {
+          getUserData();
+          //setProfileState(ProfileCheckModel.showProfile);
+        }}
+      />
+    );
   };
 
   /**

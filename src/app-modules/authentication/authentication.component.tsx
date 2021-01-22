@@ -5,6 +5,7 @@ import AuthenticationScreen from './authentication.screen';
 
 interface Props {
   authService: AuthService;
+  onLoginSuccess: () => void;
 }
 
 /**
@@ -42,7 +43,12 @@ const AuthenticationComponent = (props: Props) => {
   };
 
   const userLogin = (username: string, password: string) => {
-    props.authService.login(username, password);
+    props.authService.login(username, password).then(() => {
+      console.log('DEBUG Hello :D 1');
+      props.onLoginSuccess();
+    });
+
+    //props.authService.login(username, password);
   };
 
   /**
