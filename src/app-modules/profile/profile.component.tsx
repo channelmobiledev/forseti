@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import AuthenticationComponent from '../../app-modules/authentication/authentication.component';
 import UserModel from '../../models/UserModel';
 import ProfileScreen from './profile.screen';
@@ -6,6 +6,7 @@ import {AuthService} from '../../services/auth.service';
 import {ProfileCheckModel} from '../../models/ProfileCheckModel';
 import GradientView from '../utilityViews/gradient.screen';
 import Loading from '../utilityViews/loading.screen';
+import {useFocusEffect} from '@react-navigation/native';
 
 const ProfileComponent = () => {
   /**
@@ -17,10 +18,12 @@ const ProfileComponent = () => {
   );
 
   // On Component Start
-  useEffect(() => {
-    console.log('DEBUG running hello! :D');
-    getUserData();
-  }, []);
+  useFocusEffect(
+    React.useCallback(() => {
+      console.log('DEBUG On Component Start');
+      getUserData();
+    }, []),
+  );
 
   /**
    * Services
@@ -32,9 +35,9 @@ const ProfileComponent = () => {
    */
   const getUserData = async () => {
     const user = await authService.getUserData();
-    setUserData(user);
 
     if (user) {
+      setUserData(user);
       setProfileState(ProfileCheckModel.showProfile);
     } else {
       setProfileState(ProfileCheckModel.showAuth);

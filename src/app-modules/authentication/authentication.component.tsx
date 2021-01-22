@@ -21,7 +21,7 @@ const AuthenticationComponent = (props: Props) => {
    * Handle login click
    */
   const onLoginClick = (username: string, password: string) => {
-    // TODO Check if login is valid
+    // TODO validate login fields
     if (true) {
       userLogin(username, password);
     } else {
@@ -32,14 +32,14 @@ const AuthenticationComponent = (props: Props) => {
    * Handle register click
    */
   const onRegisterClick = () => {
-    console.log('DEBUG onRegisterClick');
+    setStep(AuthStep.register);
   };
 
   /**
    * Handle forgot password click
    */
   const onForgotPasswordClick = () => {
-    console.log('DEBUG onForgotPasswordClick');
+    setStep(AuthStep.forgotPassword);
   };
 
   const userLogin = (username: string, password: string) => {

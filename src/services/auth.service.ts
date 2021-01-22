@@ -78,6 +78,18 @@ export class AuthService {
   };
 
   /**
+   * Check if an user is logged in
+   */
+  isUserLoggedIn = async () => {
+    try {
+      const user = await AsyncStorage.getItem(this.KEY_USER);
+      return user ? true : false;
+    } catch (error) {
+      console.log('DEBUG Error while checking for users: ' + error);
+    }
+  };
+
+  /**
    * Perform the logout on storage
    */
   logout = async () => {

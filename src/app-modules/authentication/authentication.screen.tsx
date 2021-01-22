@@ -5,8 +5,10 @@ import {Text} from 'react-native-elements';
 import {Button, TextInput} from 'react-native-paper';
 import COLORS from '../../constants/COLORS';
 import {AuthStep} from '../../models/AuthStepModel';
+import ForgotPasswordComponent from './forgotpassword.component';
+import RegisterComponent from './register.component';
 
-// TODO Needs to move to a theme provicer
+// TODO Needs to move to a theme provider
 /**
  * Theme settings
  */
@@ -100,22 +102,14 @@ const AuthenticationScreen = (props: Props) => {
    * Show the register view
    */
   const showRegisterView = () => {
-    return (
-      <>
-        <Text>Register</Text>
-      </>
-    );
+    return <RegisterComponent />;
   };
 
   /**
    * Show the forgot password view
    */
   const showForgotPasswordView = () => {
-    return (
-      <>
-        <Text>Forgot Password</Text>
-      </>
-    );
+    return <ForgotPasswordComponent />;
   };
 
   /**
