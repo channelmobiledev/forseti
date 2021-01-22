@@ -11,12 +11,16 @@ export class AuthService {
   /**
    * Validates username
    */
-  validateUsername = (username: string) => {};
+  validateUsername = (username: string) => {
+    // TODO
+  };
 
   /**
    * Validates password
    */
-  validatePassword = (password: string) => {};
+  validatePassword = (password: string) => {
+    // TODO
+  };
 
   /**
    * Validates password
@@ -38,10 +42,6 @@ export class AuthService {
     await fetch(address, options)
       .then((response) => response.json())
       .then((userData: UserModel) => {
-        // TODO take care of the error message
-
-        console.log('DEBUG login with success! ' + JSON.stringify(userData));
-
         this.setUserData(userData);
       })
       .catch((error) => {
@@ -54,8 +54,8 @@ export class AuthService {
    */
   setUserData = async (user: UserModel) => {
     try {
-      console.log('DEBUG Login successfully done!');
       await AsyncStorage.setItem(this.KEY_USER, JSON.stringify(user));
+      console.log('DEBUG Login successfully done!');
     } catch (error) {
       console.log('DEBUG Error while saving user data: ' + error);
     }
@@ -72,6 +72,18 @@ export class AuthService {
       } else {
         console.log('DEBUG could not retrive user');
       }
+    } catch (error) {
+      console.log('DEBUG Error while saving user data: ' + error);
+    }
+  };
+
+  /**
+   * Perform the logout on storage
+   */
+  logout = async () => {
+    try {
+      await AsyncStorage.removeItem(this.KEY_USER);
+      console.log('DEBUG Logout successfully done!');
     } catch (error) {
       console.log('DEBUG Error while saving user data: ' + error);
     }
