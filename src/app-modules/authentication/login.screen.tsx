@@ -4,6 +4,12 @@ import {Button, TextInput} from 'react-native-paper';
 import {colors, theme} from '../../constants/constants';
 
 /**
+ * TODOS
+ * -> BUG: Users can login with success when login fields are empty
+ * -> Implement the login field validation (investigate lodash)
+ */
+
+/**
  * Props
  */
 interface Props {
@@ -34,8 +40,6 @@ const LoginScreen = (props: Props) => {
           theme={theme}
           onChangeText={(text) => setUsername(text)}
         />
-      </View>
-      <View style={styles.loginComponents}>
         <TextInput
           label="password"
           value={password}
