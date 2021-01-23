@@ -1,13 +1,22 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
-import {Button} from 'react-native-paper';
-import {colors} from '../../constants/constants';
+import {Button, TextInput} from 'react-native-paper';
+import {colors, theme} from '../../constants/constants';
+
+/**
+ * TODOS
+ * -> Check how to select and upload a profile image
+ * -> Validate fields. Show error line when data is not valid
+ * -> Keyboard type for each filed (email) (needs to be a custom view inside the TextInput https://callstack.github.io/react-native-paper/text-input.html#render)
+ * -> Handle the register feature (onSuccess, onError)
+ */
 
 /**
  * Props
  */
 interface Props {
   onBackButtonClick: () => void;
+  onRegisterSubmit: () => void;
 }
 
 /**
@@ -15,10 +24,53 @@ interface Props {
  */
 const RegisterScreen = (props: Props) => {
   /**
+   * States
+   */
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [passwordConfirm, setPasswordConfirm] = useState('');
+
+  /**
    * Render
    */
   return (
     <View style={styles.container}>
+      <View style={styles.registerComponents}>
+        <TextInput
+          label="Username"
+          value={username}
+          theme={theme}
+          onChangeText={(text) => setUsername(text)}
+        />
+        <TextInput
+          label="Email"
+          value={email}
+          theme={theme}
+          onChangeText={(text) => setEmail(text)}
+        />
+        <TextInput
+          label="Password"
+          value={password}
+          theme={theme}
+          onChangeText={(text) => setPassword(text)}
+        />
+        <TextInput
+          label="Confirm Password"
+          value={passwordConfirm}
+          theme={theme}
+          onChangeText={(text) => setPasswordConfirm(text)}
+        />
+      </View>
+      <View style={styles.registerComponents}>
+        <Button
+          icon="account"
+          mode="contained"
+          color={colors.primaryColor}
+          onPress={() => props.onRegisterSubmit()}>
+          Register New User
+        </Button>
+      </View>
       <View style={styles.registerComponents}>
         <Button
           icon="arrow-left"
