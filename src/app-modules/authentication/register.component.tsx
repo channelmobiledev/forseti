@@ -2,13 +2,20 @@ import React from 'react';
 import RegisterScreen from './register.screen';
 
 /**
+ * Props
+ */
+interface Props {
+  onGoingBack: () => void;
+}
+
+/**
  * Register Component
  */
-const RegisterComponent = () => {
+const RegisterComponent = (props: Props) => {
   /**
    * Render
    */
-  return <RegisterScreen />;
+  return <RegisterScreen onBackButtonClick={() => props.onGoingBack()} />;
 };
 
 export default RegisterComponent;

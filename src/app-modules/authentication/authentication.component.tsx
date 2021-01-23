@@ -48,6 +48,13 @@ const AuthenticationComponent = (props: Props) => {
   };
 
   /**
+   * Handle going back
+   */
+  const performGoingBack = () => {
+    setStep(AuthStep.login);
+  };
+
+  /**
    * Render
    */
   return (
@@ -58,6 +65,7 @@ const AuthenticationComponent = (props: Props) => {
       }
       onRegister={() => performRegister()}
       onForgotPassword={() => performForgotPassword()}
+      onGoingBack={() => performGoingBack()}
     />
   );
 };
