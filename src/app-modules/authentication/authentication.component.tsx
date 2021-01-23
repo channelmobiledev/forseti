@@ -3,6 +3,9 @@ import {AuthStep} from '../../models/AuthStepModel';
 import {AuthService} from '../../services/auth.service';
 import AuthenticationScreen from './authentication.screen';
 
+/**
+ * Props
+ */
 interface Props {
   authService: AuthService;
   onLoginSuccess: () => void;
@@ -13,17 +16,19 @@ interface Props {
  */
 const AuthenticationComponent = (props: Props) => {
   /**
-   * React hooks state
+   * States
    */
   const [authStep, setStep] = useState<AuthStep>(AuthStep.login);
 
   /**
    * Handle login click
    */
-  const onLoginClick = (username: string, password: string) => {
+  const performLogin = (username: string, password: string) => {
     // TODO validate login fields
     if (true) {
-      userLogin(username, password);
+      props.authService.login(username, password).then(() => {
+        props.onLoginSuccess();
+      });
     } else {
     }
   };
@@ -31,24 +36,15 @@ const AuthenticationComponent = (props: Props) => {
   /**
    * Handle register click
    */
-  const onRegisterClick = () => {
+  const performRegister = () => {
     setStep(AuthStep.register);
   };
 
   /**
    * Handle forgot password click
    */
-  const onForgotPasswordClick = () => {
+  const performForgotPassword = () => {
     setStep(AuthStep.forgotPassword);
-  };
-
-  const userLogin = (username: string, password: string) => {
-    props.authService.login(username, password).then(() => {
-      console.log('DEBUG Hello :D 1');
-      props.onLoginSuccess();
-    });
-
-    //props.authService.login(username, password);
   };
 
   /**
@@ -57,11 +53,11 @@ const AuthenticationComponent = (props: Props) => {
   return (
     <AuthenticationScreen
       authStep={authStep}
-      onLoginClick={(username: string, password: string) =>
-        onLoginClick(username, password)
+      onLogin={(username: string, password: string) =>
+        performLogin(username, password)
       }
-      onRegisterClick={() => onRegisterClick()}
-      onForgotPasswordClick={() => onForgotPasswordClick()}
+      onRegister={() => performRegister()}
+      onForgotPassword={() => performForgotPassword()}
     />
   );
 };
