@@ -13,7 +13,7 @@ interface Props {
   onLogin: (username: string, password: string) => void;
   onRegister: () => void;
   onForgotPassword: () => void;
-  onGoingBack: () => void;
+  onGoBack: () => void;
 }
 
 /**
@@ -39,7 +39,7 @@ const AuthenticationScreen = (props: Props) => {
    * Show the register component
    */
   const showRegisterView = () => {
-    return <RegisterComponent onGoingBack={() => props.onGoingBack()} />;
+    return <RegisterComponent onGoBack={() => props.onGoBack()} />;
   };
 
   /**

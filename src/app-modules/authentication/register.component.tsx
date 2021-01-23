@@ -5,7 +5,7 @@ import RegisterScreen from './register.screen';
  * Props
  */
 interface Props {
-  onGoingBack: () => void;
+  onGoBack: () => void;
 }
 
 /**
@@ -15,7 +15,7 @@ const RegisterComponent = (props: Props) => {
   /**
    * Render
    */
-  return <RegisterScreen onBackButtonClick={() => props.onGoingBack()} />;
+  return <RegisterScreen onBackButtonClick={() => props.onGoBack()} />;
 };
 
 export default RegisterComponent;
