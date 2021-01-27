@@ -2,13 +2,13 @@ import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Button, TextInput} from 'react-native-paper';
 import {colors, theme} from '../../constants/constants';
+import {UserRegisterFormModel} from '../../models/UserRegisterForm';
 
 /**
  * TODOS
  * -> Check how to select and upload a profile image
  * -> Validate fields. Show error line when data is not valid
  * -> Keyboard type for each filed (email) (needs to be a custom view inside the TextInput https://callstack.github.io/react-native-paper/text-input.html#render)
- * -> Handle the register feature (onSuccess, onError)
  */
 
 /**
@@ -16,7 +16,7 @@ import {colors, theme} from '../../constants/constants';
  */
 interface Props {
   onBackButtonClick: () => void;
-  onRegisterSubmit: () => void;
+  onRegisterSubmit: (userRegisterForm: UserRegisterFormModel) => void;
 }
 
 /**
@@ -30,6 +30,20 @@ const RegisterScreen = (props: Props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
+
+  const validateForm = () => {
+    // TODO if validated then send data to server
+    let userRegisterForm: UserRegisterFormModel = {
+      username: username,
+      email: email,
+      password: password,
+      avatar: 'https://source.unsplash.com/random',
+    };
+
+    if (true) {
+      props.onRegisterSubmit(userRegisterForm);
+    }
+  };
 
   /**
    * Render
@@ -67,7 +81,7 @@ const RegisterScreen = (props: Props) => {
           icon="account"
           mode="contained"
           color={colors.primaryColor}
-          onPress={() => props.onRegisterSubmit()}>
+          onPress={() => validateForm()}>
           Register New User
         </Button>
       </View>

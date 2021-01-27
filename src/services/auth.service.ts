@@ -1,6 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {Alert} from 'react-native';
 import {SERVER_ADDRESS} from '../constants/CONFIG';
 import UserModel from '../models/UserModel';
+import {UserRegisterFormModel as UserRegisterFormModel} from '../models/UserRegisterForm';
 
 export class AuthService {
   /**
@@ -23,7 +25,7 @@ export class AuthService {
   };
 
   /**
-   * Validates password
+   * Login
    */
   login = async (username: string, password: string) => {
     const formBody = [
@@ -47,6 +49,47 @@ export class AuthService {
       .catch((error) => {
         console.error(error);
       });
+  };
+
+  /**
+   * Register
+   */
+  register = async (userRegisterForm: UserRegisterFormModel) => {
+    const formBody = [
+      encodeURIComponent('username') + '=' + userRegisterForm.username,
+      encodeURIComponent('email') + '=' + userRegisterForm.email,
+      encodeURIComponent('password') + '=' + userRegisterForm.password,
+      encodeURIComponent('avatar') + '=' + userRegisterForm.avatar,
+    ];
+    const address = SERVER_ADDRESS + 'users/signup';
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+      },
+      body: formBody.join('&'),
+    };
+    await fetch(address, options)
+      .then((response: Response) => {
+        return response
+          .json()
+          .then((data) => ({status: response.status, body: data}));
+      })
+      .then((response: any) => {
+        this.errorCheck(response);
+      })
+      .catch((error) => {
+        throw error;
+      });
+  };
+
+  /**
+   * Handles errors in the request
+   */
+  errorCheck = (response: any): any => {
+    if (response.status !== 200) {
+      throw response.body.message;
+    }
   };
 
   /**

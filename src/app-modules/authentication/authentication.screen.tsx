@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {AuthStep} from '../../models/AuthStepModel';
+import {UserRegisterFormModel} from '../../models/UserRegisterForm';
 import ForgotPasswordComponent from './forgotpassword.component';
 import LoginComponent from './login.component';
 import RegisterComponent from './register.component';
@@ -11,8 +12,9 @@ import RegisterComponent from './register.component';
 interface Props {
   authStep: AuthStep;
   onLogin: (username: string, password: string) => void;
-  onRegister: () => void;
-  onForgotPassword: () => void;
+  onRegisterButtonPress: () => void;
+  onRegisterSubmit: (userRegisterForm: UserRegisterFormModel) => void;
+  onForgotPasswordButtonPress: () => void;
   onGoBack: () => void;
 }
 
@@ -29,8 +31,8 @@ const AuthenticationScreen = (props: Props) => {
         onLogin={(username: string, password: string) =>
           props.onLogin(username, password)
         }
-        onRegister={() => props.onRegister()}
-        onForgotPassword={() => props.onForgotPassword()}
+        onRegister={() => props.onRegisterButtonPress()}
+        onForgotPassword={() => props.onForgotPasswordButtonPress()}
       />
     );
   };
@@ -39,7 +41,14 @@ const AuthenticationScreen = (props: Props) => {
    * Show the register component
    */
   const showRegisterView = () => {
-    return <RegisterComponent onGoBack={() => props.onGoBack()} />;
+    return (
+      <RegisterComponent
+        onRegisterSubmit={(userRegisterForm: UserRegisterFormModel) =>
+          props.onRegisterSubmit(userRegisterForm)
+        }
+        onGoBack={() => props.onGoBack()}
+      />
+    );
   };
 
   /**

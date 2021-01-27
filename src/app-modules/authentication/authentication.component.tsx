@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
+import {Alert} from 'react-native';
 import {AuthStep} from '../../models/AuthStepModel';
+import {UserRegisterFormModel} from '../../models/UserRegisterForm';
 import {AuthService} from '../../services/auth.service';
 import AuthenticationScreen from './authentication.screen';
 
@@ -34,17 +36,46 @@ const AuthenticationComponent = (props: Props) => {
   };
 
   /**
-   * Handle register click
+   * Show register component
    */
-  const performRegister = () => {
+  const showRegister = () => {
     setStep(AuthStep.register);
   };
 
   /**
-   * Handle forgot password click
+   * Show forgot password component
    */
-  const performForgotPassword = () => {
+  const showForgotPassword = () => {
     setStep(AuthStep.forgotPassword);
+  };
+
+  /**
+   * Handle register click
+   */
+  const performUserRegister = (userRegisterForm: UserRegisterFormModel) => {
+    props.authService
+      .register(userRegisterForm)
+      .then(() => {
+        onRegisterSuccess();
+      })
+      .catch((error) => {
+        onRegisterError(error);
+      });
+  };
+
+  /**
+   * Handles authentication after a user is successfully register
+   */
+  const onRegisterSuccess = () => {
+    Alert.alert('', 'User created successfully');
+    setStep(AuthStep.login);
+  };
+
+  /**
+   * Handles authentication after a user is successfully register
+   */
+  const onRegisterError = (error: any) => {
+    Alert.alert('Error registering new user', error);
   };
 
   /**
@@ -63,8 +94,11 @@ const AuthenticationComponent = (props: Props) => {
       onLogin={(username: string, password: string) =>
         performLogin(username, password)
       }
-      onRegister={() => performRegister()}
-      onForgotPassword={() => performForgotPassword()}
+      onRegisterSubmit={(userRegisterForm: UserRegisterFormModel) =>
+        performUserRegister(userRegisterForm)
+      }
+      onRegisterButtonPress={() => showRegister()}
+      onForgotPasswordButtonPress={() => showForgotPassword()}
       onGoBack={() => performGoBack()}
     />
   );
