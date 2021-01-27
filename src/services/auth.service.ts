@@ -70,10 +70,9 @@ export class AuthService {
       body: formBody.join('&'),
     };
     await fetch(address, options)
-      .then((response: Response) => {
-        return response
-          .json()
-          .then((data) => ({status: response.status, body: data}));
+      .then(async (response: Response) => {
+        const data = await response.json();
+        return {status: response.status, body: data};
       })
       .then((response: any) => {
         this.errorCheck(response);
