@@ -1,7 +1,6 @@
 import React from 'react';
-import {FlatList, ScrollView, Text, View} from 'react-native';
-import {Button, ListItem} from 'react-native-elements';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {View} from 'react-native';
+import {Button, List} from 'react-native-paper';
 import COLORS from '../../constants/COLORS';
 
 interface Props {
@@ -13,74 +12,27 @@ interface Props {
  */
 const SettingsScreen = (props: Props) => {
   /**
-   * Data models
+   * Logout button view
    */
-  interface ListItemSettingsViewType {
-    view: () => {};
-    onClick: () => void;
-  }
-
-  interface ListItemSettings {
-    name: string;
-    description: string;
-    type: ListItemSettingsViewType;
-  }
-
-  /**
-   * Generic Button Option view
-   */
-  const optionButtonConfirm = () => {
+  const UserLogoutButtonArea = () => {
     return (
       <View
         style={{
           flex: 1,
-          alignSelf: 'flex-end',
+          flexDirection: 'row-reverse',
+          alignItems: 'center',
         }}>
         <Button
-          containerStyle={{marginTop: 10}}
-          titleStyle={{
-            color: COLORS.white,
-          }}
-          buttonStyle={{borderColor: COLORS.white}}
-          type="outline"
-          title={'Logout'}
-          icon={
-            <MaterialCommunityIcons
-              name="power"
-              size={20}
-              color={COLORS.white}
-            />
-          }
-          onPress={() => {
-            props.onLogoutClick();
-          }}></Button>
+          mode="contained"
+          icon="power"
+          dark={false}
+          onPress={() => props.onLogoutClick()}
+          contentStyle={{
+            backgroundColor: COLORS.secondaryColor,
+          }}>
+          Logout
+        </Button>
       </View>
-    );
-  };
-
-  const settingsList: ListItemSettings[] = [
-    {
-      name: 'USERNAME',
-      description: 'Current user',
-      type: {view: optionButtonConfirm, onClick: () => {}},
-    },
-  ];
-
-  /**
-   * List item view
-   */
-  const settingListItem = ({item}: {item: ListItemSettings}) => {
-    /**
-     * Render
-     */
-    return (
-      <ListItem bottomDivider containerStyle={{backgroundColor: '#00000000'}}>
-        <ListItem.Content>
-          <ListItem.Title>{item.name}</ListItem.Title>
-          <ListItem.Subtitle>{item.description}</ListItem.Subtitle>
-        </ListItem.Content>
-        <ListItem.Content>{item.type.view()}</ListItem.Content>
-      </ListItem>
     );
   };
 
@@ -89,11 +41,16 @@ const SettingsScreen = (props: Props) => {
    */
   return (
     <>
-      <FlatList
-        keyExtractor={(_, index) => index.toString()}
-        data={settingsList}
-        renderItem={settingListItem}
-      />
+      <List.Section>
+        <List.Subheader style={{color: COLORS.white}}>
+          User settings
+        </List.Subheader>
+        <List.Item
+          title="USERNAME"
+          description="Current user"
+          right={() => <UserLogoutButtonArea />}
+        />
+      </List.Section>
     </>
   );
 };
