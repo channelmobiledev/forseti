@@ -128,6 +128,7 @@ export class AuthService {
       return user ? true : false;
     } catch (error) {
       console.log('DEBUG Error while checking for users: ' + error);
+      return false;
     }
   };
 
